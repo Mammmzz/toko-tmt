@@ -274,6 +274,78 @@
     });
   }
 
+  /** Lightbox functionality */
+  function initLightbox(slides) {
+    const modal = document.getElementById('lightbox-modal');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    
+    let currentLightboxIndex = 0;
+
+    function openLightbox(index) {
+      currentLightboxIndex = index;
+      const slide = slides[index];
+      lightboxImage.src = slide.image;
+      lightboxImage.alt = slide.alt || `Menu ${index + 1}`;
+      lightboxCounter.textContent = `${index + 1} / ${slides.length}`;
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function navigateLightbox(direction) {
+      if (direction === 'next') {
+        currentLightboxIndex = (currentLightboxIndex + 1) % slides.length;
+      } else {
+        currentLightboxIndex = (currentLightboxIndex - 1 + slides.length) % slides.length;
+      }
+      openLightbox(currentLightboxIndex);
+    }
+
+    // Event listeners
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', () => navigateLightbox('prev'));
+    lightboxNext.addEventListener('click', () => navigateLightbox('next'));
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('active')) return;
+      
+      switch(e.key) {
+        case 'Escape':
+          e.preventDefault();
+          closeLightbox();
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          navigateLightbox('prev');
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          navigateLightbox('next');
+          break;
+      }
+    });
+
+    // Close on overlay click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal || e.target.classList.contains('lightbox-overlay')) {
+        closeLightbox();
+      }
+    });
+
+    return { openLightbox };
+  }
+
   /** Main boot */
   async function boot() {
     const slides = await fetchSlidesData();
@@ -286,6 +358,16 @@
 
     buildSlides(slides);
     const swiperInstance = initSwiper();
+    const { openLightbox } = initLightbox(slides);
+    
+    // Add click handlers to slides
+    document.querySelectorAll('.slide-link').forEach((link, index) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        openLightbox(index);
+      });
+    });
+
     attachFullscreenHandler();
     attachKeyboardHandler(swiperInstance);
     attachCustomArrowHandlers(swiperInstance);
