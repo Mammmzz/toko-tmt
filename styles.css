@@ -298,10 +298,9 @@ body {
 /* Custom Arrow Buttons - Bigger and more prominent */
 .custom-arrow {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 80px;
-  height: 80px;
+  bottom: 30px;
+  width: 60px;
+  height: 60px;
   border: none;
   border-radius: 50%;
   background: var(--glass-bg);
@@ -319,27 +318,27 @@ body {
 }
 
 .custom-arrow-left {
-  left: 30px;
+  left: calc(50% - 90px);
 }
 
 .custom-arrow-right {
-  right: 30px;
+  right: calc(50% - 90px);
 }
 
 .custom-arrow:hover {
-  transform: translateY(-50%) scale(1.1);
+  transform: scale(1.1);
   background: var(--accent);
   border-color: var(--accent);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(251, 191, 36, 0.5);
 }
 
 .custom-arrow:active {
-  transform: translateY(-50%) scale(0.95);
+  transform: scale(0.95);
 }
 
 .custom-arrow svg {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   color: var(--btn-fg);
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
   transition: all 300ms ease;
@@ -358,13 +357,29 @@ body {
   }
 }
 
+/* Tablet Arrow Buttons */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .custom-arrow {
+    bottom: 25px;
+    width: 55px;
+    height: 55px;
+  }
+  
+  .custom-arrow-left {
+    left: calc(50% - 80px);
+  }
+  
+  .custom-arrow-right {
+    right: calc(50% - 80px);
+  }
+}
+
 /* Mobile Arrow Buttons */
 .mobile-arrow {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 60px;
-  height: 60px;
+  bottom: 20px;
+  width: 50px;
+  height: 50px;
   border: none;
   border-radius: 50%;
   background: var(--glass-bg);
@@ -382,27 +397,27 @@ body {
 }
 
 .mobile-arrow-left {
-  left: 15px;
+  left: calc(50% - 65px);
 }
 
 .mobile-arrow-right {
-  right: 15px;
+  right: calc(50% - 65px);
 }
 
 .mobile-arrow:hover {
-  transform: translateY(-50%) scale(1.1);
+  transform: scale(1.1);
   background: var(--accent);
   border-color: var(--accent);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(251, 191, 36, 0.5);
 }
 
 .mobile-arrow:active {
-  transform: translateY(-50%) scale(0.95);
+  transform: scale(0.95);
 }
 
 .mobile-arrow svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   color: var(--btn-fg);
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
   transition: all 300ms ease;
