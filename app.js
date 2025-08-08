@@ -224,7 +224,10 @@
   function attachCustomArrowHandlers(swiperInstance) {
     const prevButton = document.getElementById('custom-prev');
     const nextButton = document.getElementById('custom-next');
+    const mobilePrevButton = document.getElementById('mobile-prev');
+    const mobileNextButton = document.getElementById('mobile-next');
 
+    // Desktop buttons
     if (prevButton) {
       prevButton.addEventListener('click', () => {
         swiperInstance.slidePrev();
@@ -233,6 +236,19 @@
 
     if (nextButton) {
       nextButton.addEventListener('click', () => {
+        swiperInstance.slideNext();
+      });
+    }
+
+    // Mobile buttons
+    if (mobilePrevButton) {
+      mobilePrevButton.addEventListener('click', () => {
+        swiperInstance.slidePrev();
+      });
+    }
+
+    if (mobileNextButton) {
+      mobileNextButton.addEventListener('click', () => {
         swiperInstance.slideNext();
       });
     }
@@ -246,6 +262,14 @@
       if (nextButton) {
         nextButton.disabled = swiperInstance.isEnd;
         nextButton.style.opacity = swiperInstance.isEnd ? '0.3' : '1';
+      }
+      if (mobilePrevButton) {
+        mobilePrevButton.disabled = swiperInstance.isBeginning;
+        mobilePrevButton.style.opacity = swiperInstance.isBeginning ? '0.3' : '1';
+      }
+      if (mobileNextButton) {
+        mobileNextButton.disabled = swiperInstance.isEnd;
+        mobileNextButton.style.opacity = swiperInstance.isEnd ? '0.3' : '1';
       }
     });
   }

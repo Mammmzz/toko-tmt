@@ -358,10 +358,138 @@ body {
   }
 }
 
-/* Show default swiper buttons on mobile */
+/* Mobile Arrow Buttons */
+.mobile-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  border: 2px solid var(--glass-border);
+  color: var(--btn-fg);
+  cursor: pointer;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 15;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+}
+
+.mobile-arrow-left {
+  left: 15px;
+}
+
+.mobile-arrow-right {
+  right: 15px;
+}
+
+.mobile-arrow:hover {
+  transform: translateY(-50%) scale(1.1);
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(251, 191, 36, 0.5);
+}
+
+.mobile-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.mobile-arrow svg {
+  width: 24px;
+  height: 24px;
+  color: var(--btn-fg);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: all 300ms ease;
+}
+
+.mobile-arrow:hover svg {
+  color: #000;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+/* Mobile Responsive Design */
 @media (max-width: 767px) {
   .custom-arrow {
     display: none !important;
+  }
+  
+  .mobile-arrow {
+    display: flex !important;
+  }
+  
+  /* Enhanced mobile navigation buttons */
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 50px;
+    height: 50px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  /* Mobile slide container */
+  .slide-link {
+    padding: 15px;
+  }
+  
+  .slide-link img {
+    max-width: 98%;
+    max-height: 85%;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Mobile glass container */
+  .slide-link::before {
+    inset: 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+  }
+  
+  /* Mobile pagination */
+  .swiper-pagination {
+    bottom: 20px;
+  }
+  
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    margin: 0 4px;
+  }
+  
+  /* Mobile fullscreen button */
+  .fullscreen-toggle {
+    width: 44px;
+    height: 44px;
+    right: 15px;
+    top: 15px;
+    border-radius: 12px;
+  }
+  
+  /* Mobile particles - reduce for performance */
+  .particle {
+    width: 3px;
+    height: 3px;
+  }
+  
+  /* Mobile loading spinner */
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border-width: 3px;
   }
 }
 
