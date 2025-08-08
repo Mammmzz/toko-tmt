@@ -298,7 +298,7 @@ body {
 /* Custom Arrow Buttons - Bigger and more prominent */
 .custom-arrow {
   position: absolute;
-  bottom: 30px;
+  bottom: 50px;
   width: 60px;
   height: 60px;
   border: none;
@@ -360,7 +360,7 @@ body {
 /* Tablet Arrow Buttons */
 @media (min-width: 768px) and (max-width: 1023px) {
   .custom-arrow {
-    bottom: 25px;
+    bottom: 40px;
     width: 55px;
     height: 55px;
   }
@@ -377,7 +377,7 @@ body {
 /* Mobile Arrow Buttons */
 .mobile-arrow {
   position: absolute;
-  bottom: 20px;
+  bottom: 35px;
   width: 50px;
   height: 50px;
   border: none;
